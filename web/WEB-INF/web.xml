@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/WORK/servlet/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/WORK/servlet/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SearchNoteServlet</servlet-name>
+        <servlet-class>servlet.SearchNoteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchNoteServlet</servlet-name>
+        <url-pattern>/WORK/servlet/SearchNoteServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchGoodServlet</servlet-name>
+        <servlet-class>servlet.SearchGoodServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchGoodServlet</servlet-name>
+        <url-pattern>/WORK/servlet/SearchGoodServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>VerifyGoodIdServlet</servlet-name>
+        <servlet-class>servlet.VerifyGoodIdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerifyGoodIdServlet</servlet-name>
+        <url-pattern>/WORK/servlet/VerifyGoodIdServlet</url-pattern>
+    </servlet-mapping>
+
+   <servlet>
+       <servlet-name>AddGoodsServlet</servlet-name>
+       <servlet-class>servlet.AddGoodsServlet</servlet-class>
+   </servlet>
+    <servlet-mapping>
+        <servlet-name>AddGoodsServlet</servlet-name>
+        <url-pattern>/WORK/servlet/AddGoodsServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>SaveImageServlet</servlet-name>
+        <servlet-class>servlet.SaveImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveImageServlet</servlet-name>
+        <url-pattern>/WORK/servlet/SaveImageServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateImagenameServlet</servlet-name>
+        <servlet-class>servlet.UpdateImagenameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateImagenameServlet</servlet-name>
+        <url-pattern>/WORK/servlet/UpdateImagenameServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>UpdateRemainServlet</servlet-name>
+        <servlet-class>servlet.UpdateRemainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateRemainServlet</servlet-name>
+        <url-pattern>/WORK/servlet/UpdateRemainServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ChangeServlet</servlet-name>
+        <servlet-class>servlet.ChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeServlet</servlet-name>
+        <url-pattern>/WORK/servlet/ChangeServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>SearchGoodServletById</servlet-name>
+        <servlet-class>servlet.SearchGoodServletById</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchGoodServletById</servlet-name>
+        <url-pattern>/WORK/servlet/SearchGoodServletById</url-pattern>
+    </servlet-mapping>
+</web-app>
