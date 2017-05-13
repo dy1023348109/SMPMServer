@@ -19,6 +19,9 @@ import java.sql.ResultSet;
 @WebServlet(name = "VerifyGoodIdServlet")
 public class VerifyGoodIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String id=request.getParameter("good_id");
         int good_id=Integer.valueOf(id);
         MySqlConnect connect=new MySqlConnect();

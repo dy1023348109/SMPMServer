@@ -30,37 +30,89 @@ public class SearchNoteServlet extends HttpServlet {
         response.setContentType("application/json; charset=utf-8");
 
         String note_date=request.getParameter("note_date");
-        String good_name=request.getParameter("good_name");
+        String good_name=new String(request.getParameter("good_name").getBytes("iso-8859-1"),"utf-8");
         MySqlConnect connect=new MySqlConnect();
         Connection conn=connect.getConn();
         PrintWriter printWriter=response.getWriter();
+        System.out.print(good_name);
         if(note_date.equals("empty") &&!good_name.equals("empty"))
         {
             //按照名称查找
-            try
-            {   String sql = "SELECT * FROM note WHERE good_name='"+good_name+"'";
-                Statement statement = conn.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql);
-                JsonObject jsonObject = new JsonObject();
-                while (resultSet.next()) {
-                    jsonObject.addProperty("note_good_id", resultSet.getInt("good_id"));
-                    jsonObject.addProperty("note_quan", resultSet.getInt("note_quan"));
-                    jsonObject.addProperty("note_type", resultSet.getInt("note_type"));
-                    jsonObject.addProperty("note_good_name", resultSet.getString("good_name"));
-                    jsonObject.addProperty("note_id", resultSet.getString("note_id"));
-                    jsonObject.addProperty("note_time", resultSet.getString("note_time"));
-                    printWriter.print(jsonObject.toString());
+            boolean isNum = good_name.matches("[0-9]+");
+            if(!isNum)
+            {
+
+
+                try
+                {   String sql = "SELECT * FROM note WHERE good_name='"+good_name+"'";
+                    Statement statement = conn.createStatement();
+                    ResultSet resultSet = statement.executeQuery(sql);
+                    JsonObject out=new JsonObject();
+                    JsonArray json=new JsonArray();
+                    while (resultSet.next())
+                    {
+                        JsonObject jsonObject=new JsonObject();
+
+                        jsonObject.addProperty("note_good_id", resultSet.getInt("good_id"));
+                        jsonObject.addProperty("note_quan", resultSet.getInt("note_quan"));
+                        jsonObject.addProperty("note_type", resultSet.getInt("note_type"));
+                        jsonObject.addProperty("note_good_name", resultSet.getString("good_name"));
+                        jsonObject.addProperty("note_id", resultSet.getString("note_id"));
+                        jsonObject.addProperty("note_time", resultSet.getString("note_time"));
+
+                        json.add(jsonObject);
+                    }
+                    out.add("data",json);
+                    response.getWriter().print(out.toString());
+                }
+
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    System.out.print("error_name");
 
                 }
-                conn.close();
-            }
 
-            catch (Exception e)
+
+
+            }
+            else
             {
-                e.printStackTrace();
-                System.out.print("error_name");
+                try
+                {
+                    int id=Integer.valueOf(good_name);
+                    String sql = "SELECT * FROM note WHERE good_id='"+id+"'";
+                    Statement statement = conn.createStatement();
+                    ResultSet resultSet = statement.executeQuery(sql);
+                    JsonObject out=new JsonObject();
+                    JsonArray json=new JsonArray();
+                    while (resultSet.next())
+                    {
+                        JsonObject jsonObject=new JsonObject();
 
+                        jsonObject.addProperty("note_good_id", resultSet.getInt("good_id"));
+                        jsonObject.addProperty("note_quan", resultSet.getInt("note_quan"));
+                        jsonObject.addProperty("note_type", resultSet.getInt("note_type"));
+                        jsonObject.addProperty("note_good_name", resultSet.getString("good_name"));
+                        jsonObject.addProperty("note_id", resultSet.getString("note_id"));
+                        jsonObject.addProperty("note_time", resultSet.getString("note_time"));
+
+                        json.add(jsonObject);
+                    }
+                    out.add("data",json);
+                    response.getWriter().print(out.toString());
+                    conn.close();
+                }
+
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    System.out.print("error_name");
+
+                }
             }
+
+
 
 
 

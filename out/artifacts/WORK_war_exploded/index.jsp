@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="kiben" content="no-cache"/>
 <html>
   <head>
     <title>$Title$</title>

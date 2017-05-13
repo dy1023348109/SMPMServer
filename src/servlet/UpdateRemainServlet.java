@@ -31,8 +31,9 @@ public class UpdateRemainServlet extends HttpServlet {
         int good_id=Integer.valueOf(request.getParameter("good_id"));
         int remain=Integer.valueOf(request.getParameter("remain"));
         int out=Integer.valueOf(request.getParameter("out"));
-        String good_name=request.getParameter("good_name");
+        String good_name=new String(request.getParameter("good_name").getBytes("iso-8859-1"),"utf-8");
 
+        System.out.print(good_name+"--");
         MySqlConnect connect=new MySqlConnect();
         Connection conn=connect.getConn();
         JsonObject jsonObject=new JsonObject();
@@ -50,20 +51,13 @@ public class UpdateRemainServlet extends HttpServlet {
             int hour=date.get(Calendar.HOUR_OF_DAY);
             int minute=date.get(Calendar.MINUTE);
             int second=date.get(Calendar.SECOND);
-            String  note_id=year+""+month+""+day+""+(hour<10?(12+hour):hour)+""+minute+""+(second<10?0:"")+second;
+            String  note_id=year+""+month+""+day+""+(hour<10?(12+hour):hour)+""+(minute<10?0:"")+""+minute+""+(second<10?0:"")+second;
             String  note_time=year+"-"+month+"-"+day;
             String sql2="INSERT INTO note VALUES ('"+note_id+"','"+note_time+"','2','"+good_name+"','"+good_id+"','"+out+"')";
             Statement ss=conn.createStatement();
             ss.executeUpdate(sql2);
-
-
             jsonObject.addProperty("status",8);//返回8成功
             response.getWriter().print(jsonObject.toString());
-
-
-
-
-
             conn.close();
 
         }
