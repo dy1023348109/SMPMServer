@@ -39,11 +39,9 @@ public class UpdateRemainServlet extends HttpServlet {
         JsonObject jsonObject=new JsonObject();
         try
         {
-
             String sql="UPDATE good SET good_quan='"+remain+"' WHERE good_id='"+good_id+"'";
             Statement statement=conn.createStatement();
             statement.executeUpdate(sql);
-
             Calendar date = Calendar.getInstance(Locale.CHINA);
             int year=date.get(Calendar.YEAR);
             int month=date.get(Calendar.MONTH)+1;
@@ -51,7 +49,7 @@ public class UpdateRemainServlet extends HttpServlet {
             int hour=date.get(Calendar.HOUR_OF_DAY);
             int minute=date.get(Calendar.MINUTE);
             int second=date.get(Calendar.SECOND);
-            String  note_id=year+""+month+""+day+""+(hour<10?(12+hour):hour)+""+(minute<10?0:"")+""+minute+""+(second<10?0:"")+second;
+            String  note_id=year+""+(month<10?0:"")+""+month+""+day+""+(hour<10?(12+hour):hour)+""+(minute<10?0:"")+""+minute+""+(second<10?0:"")+second;
             String  note_time=year+"-"+month+"-"+day;
             String sql2="INSERT INTO note VALUES ('"+note_id+"','"+note_time+"','2','"+good_name+"','"+good_id+"','"+out+"')";
             Statement ss=conn.createStatement();
@@ -59,14 +57,11 @@ public class UpdateRemainServlet extends HttpServlet {
             jsonObject.addProperty("status",8);//返回8成功
             response.getWriter().print(jsonObject.toString());
             conn.close();
-
         }
         catch (Exception e)
         {
-
             jsonObject.addProperty("status",9);//返回9失败
             response.getWriter().print(jsonObject.toString());
-
         }
 
     }

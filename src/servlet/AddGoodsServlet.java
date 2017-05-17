@@ -98,7 +98,7 @@ public class AddGoodsServlet extends HttpServlet {
             int hour=date.get(Calendar.HOUR_OF_DAY);
             int minute=date.get(Calendar.MINUTE);
             int second=date.get(Calendar.SECOND);
-            String  note_id=year+""+month+""+day+""+(hour<10?(12+hour):hour)+""+(minute<10?0:"")+minute+""+(second<10?0:"")+second;
+            String  note_id=year+""+(month<10?0:"")+""+month+""+day+""+(hour<10?(12+hour):hour)+""+(minute<10?0:"")+""+minute+""+(second<10?0:"")+second;
             String note_time=year+"-"+month+"-"+day;
             String sql2="INSERT INTO note VALUES ('"+note_id+"','"+note_time+"','1','"+good_name+"','"+good_id+"','"+good_quan+"')";
             Statement statement=conn.createStatement();
